@@ -20,8 +20,19 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     namespace: 'Metadata.home',
   });
 
+  // 检查环境变量是否存在，并给出默认值
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
+  let metadataBase;
+  try {
+    metadataBase = new URL(siteUrl);
+  } catch (error) {
+    console.error('Invalid URL in NEXT_PUBLIC_SITE_URL:', siteUrl);
+    metadataBase = new URL('http://localhost:3000'); // 默认值
+  }
+
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
+    metadataBase,
     title: t('title'),
     description: t('description'),
     keywords: t('keywords'),
