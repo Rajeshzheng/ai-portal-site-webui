@@ -6,8 +6,11 @@
     }
   ],
   "functions": {
-    "api/cron.js": {
-      "maxDuration": 60
+    "api/cron/crawler.ts": {
+      "maxDuration": 30
+    },
+    "api/cron/route.ts": {
+      "maxDuration": 30
     }
   }
 }
