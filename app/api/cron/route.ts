@@ -69,9 +69,12 @@ export async function POST(req: NextRequest) {
 
     console.log('api get crawler succeed!');
 
-    if (res.code !== 200) {
-      throw new Error(res.msg);
+    if (res.code !== 200 || !res.data) {
+      throw new Error(res.msg || 'Crawler API返回数据无效');
     }
+
+    // 现在我们确定res.data存在，可以安全地使用它
+    const { name, title, description, detail, url, screenshot_data, screenshot_thumbnail_data, tags } = res.data;
 
     // 更新submit表中的status
     const { error: updateError } = await supabase.from('submit').update({ status: 1 }).eq('id', firstSubmitData.id);
@@ -82,18 +85,18 @@ export async function POST(req: NextRequest) {
 
     // 插入数据到web_navigation表
     const { error: insertError } = await supabase.from('web_navigation').insert({
-      name: res.data.name,
-      title: res.data.title,
-      content: res.data.description,
-      detail: res.data.detail,
-      url: res.data.url,
-      image_url: res.data.screenshot_data,
-      thumbnail_url: res.data.screenshot_thumbnail_data,
+      name,
+      title,
+      content: description,
+      detail,
+      url,
+      image_url: screenshot_data,
+      thumbnail_url: screenshot_thumbnail_data,
       collection_time: new Date().toISOString(),
       tag_name: null, // 设置为null
       website_data: null, // 设置为null
       star_rating: 0, // 统一使用0
-      category_name: res.data.tags && res.data.tags.length > 0 ? res.data.tags[0] : 'other',
+      category_name: tags && tags.length > 0 ? tags[0] : 'other',
     });
 
     if (insertError) {
