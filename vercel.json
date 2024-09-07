@@ -7,8 +7,8 @@
   ],
   "functions": {
     "api/cron/*": {
-      "maxDuration": 30, // 最大超时 30 秒
-      "memory": 1024 // 内存设置为 1024 MB
+      "maxDuration": 30, 
+      "memory": 1024 
     }
   }
 }
