@@ -6,11 +6,9 @@
     }
   ],
   "functions": {
-    "api/cron/crawler.ts": {
-      "maxDuration": 30
-    },
-    "api/cron/route.ts": {
-      "maxDuration": 30
+    "api/cron/*": {
+      "maxDuration": 30, // 最大超时 30 秒
+      "memory": 1024 // 内存设置为 1024 MB
     }
   }
 }
