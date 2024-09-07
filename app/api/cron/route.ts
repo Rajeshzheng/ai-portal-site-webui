@@ -69,54 +69,39 @@ export async function POST(req: NextRequest) {
 
     console.log('api get crawler succeed!');
 
-    if (res.code === 200) {
-      // 打印爬虫返回的数据，确保每个字段都存在
-      console.log('Crawler API returned data:', res);
-
-      // 从 res.data 中提取字段
-      const { name, title, description, detail, screenshot_data, screenshot_thumbnail_data, tags } = res.data;
-
-      // 打印每个字段以确保它们有值
-      console.log('Name:', name);
-      console.log('Title:', title);
-      console.log('Description:', description);
-      console.log('Detail:', detail);
-      console.log('Tags:', tags);
-      console.log('Screenshot URL:', screenshot_data);
-      console.log('Thumbnail URL:', screenshot_thumbnail_data);
-
-      // 确保 title、description 和其他字段不为空，必要时提供默认值
-      const insertResult = await supabase.from('web_navigation').insert({
-        name: name || 'Unnamed', // 使用返回的 name
-        url: firstSubmitData.url,
-        title: title || 'Untitled', // 使用返回的 title
-        content: description || 'No content available', // 使用返回的 description 作为 content
-        detail: detail || 'No detail available', // 使用返回的 detail
-        tag_name: tags?.join(', ') || '', // 将 tags 转换为逗号分隔的字符串插入 tag_name
-        thumbnail_url: screenshot_thumbnail_data || null, // 使用返回的缩略图 URL
-        image_url: screenshot_data || null, // 使用返回的图片 URL
-        collection_time: new Date().toISOString(),
-        category_name: 'Uncategorized', // 如果返回了 category_name 则使用它
-      });
-
-      if (insertResult.error) {
-        console.error('Failed to insert data into web_navigation:', insertResult.error);
-        return NextResponse.json({ error: 'Insert failed' }, { status: 500 });
-      }
-
-      // 更新 submit 表的 status 字段为 1
-      const updateResult = await supabase.from('submit').update({ status: 1 }).eq('id', firstSubmitData.id);
-
-      if (updateResult.error) {
-        console.error('Failed to update submit status:', updateResult.error);
-        return NextResponse.json({ error: 'Update failed' }, { status: 500 });
-      }
-
-      console.log('Data successfully inserted and status updated');
-      return NextResponse.json({ message: 'Success' });
-    } else {
+    if (res.code !== 200) {
       throw new Error(res.msg);
     }
+
+    // 更新submit表中的status
+    const { error: updateError } = await supabase.from('submit').update({ status: 1 }).eq('id', firstSubmitData.id);
+
+    if (updateError) {
+      throw new Error('Failed to update submit status');
+    }
+
+    // 插入数据到web_navigation表
+    const { error: insertError } = await supabase.from('web_navigation').insert({
+      name: res.data.name,
+      title: res.data.title,
+      content: res.data.description,
+      detail: res.data.detail,
+      url: res.data.url,
+      image_url: res.data.screenshot_data,
+      thumbnail_url: res.data.screenshot_thumbnail_data,
+      collection_time: new Date().toISOString(),
+      tag_name: null, // 设置为null
+      website_data: null, // 设置为null
+      star_rating: 0, // 统一使用0
+      category_name: res.data.tags && res.data.tags.length > 0 ? res.data.tags[0] : 'other',
+    });
+
+    if (insertError) {
+      console.error('Failed to insert data into web_navigation:', insertError);
+      throw new Error('Failed to insert data into web_navigation');
+    }
+
+    return NextResponse.json({ message: 'Success' });
   } catch (error) {
     return Response.json({ error });
   }

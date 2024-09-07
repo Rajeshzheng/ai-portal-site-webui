@@ -9,6 +9,17 @@ type CrawlerRequest = {
 type CrawlerResponse = {
   code: number;
   msg: string;
+  data?: {
+    description: string;
+    detail: string;
+    languages: string[];
+    name: string;
+    screenshot_data: string;
+    screenshot_thumbnail_data: string;
+    tags: string[] | null;
+    title: string;
+    url: string;
+  };
 };
 
 // type CrawlerData = {
