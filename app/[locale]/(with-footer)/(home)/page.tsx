@@ -63,13 +63,15 @@ export default async function Page() {
           <SearchForm />
         </div>
         <div className='mb-10 mt-5'>
-          <TagList
-            data={categoryList!.map((item) => ({
-              id: String(item.id),
-              name: item.name,
-              href: `/category/${item.name}`,
-            }))}
-          />
+          {categoryList && (
+            <TagList
+              data={categoryList.map((item) => ({
+                id: String(item.id),
+                name: item.name,
+                href: `/category/${item.name}`,
+              }))}
+            />
+          )}
         </div>
         <div className='flex flex-col gap-5'>
           <h2 className='text-center text-[18px] lg:text-[32px]'>{t('ai-navigate')}</h2>
