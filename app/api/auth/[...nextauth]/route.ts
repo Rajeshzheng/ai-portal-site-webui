@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 
 const handler = NextAuth({
   providers: [
@@ -12,12 +12,11 @@ const handler = NextAuth({
   callbacks: {
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.sub ?? '';
+        session.user.id = token.sub || '';
       }
       return session;
     },
   },
 });
 
-// 导出 GET 和 POST 处理器
 export { handler as GET, handler as POST };
