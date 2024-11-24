@@ -23,7 +23,12 @@ function NavDrawerItem({ isActive, name }: { isActive: boolean; name: string }) 
   );
 }
 
-export default function NavigationDrawer({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
+interface NavigationDrawerProps {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+export default function NavigationDrawer({ open, setOpen }: NavigationDrawerProps) {
   const t = useTranslations('Navigation');
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(open);
@@ -38,21 +43,21 @@ export default function NavigationDrawer({ open, setOpen }: { open: boolean; set
     label: t(`${item.code}`),
   }));
 
-  const onClose = () => {
-    setOpen(false);
-    setIsOpen(false);
-  };
+  const handleClose = () => setOpen(false);
 
   const onRoute = (route: string) => {
     router.push(route);
-    onClose();
+    handleClose();
   };
 
   return (
     <>
       <div
-        className={cn('fixed z-50 h-screen w-screen overflow-hidden bg-black/60', isOpen ? 'block' : 'hidden')}
-        onClick={onClose}
+        className={cn(
+          'fixed inset-0 z-40 bg-black/60 transition-opacity duration-300',
+          open ? 'visible opacity-100' : 'invisible opacity-0',
+        )}
+        onClick={handleClose}
       />
       <div
         className={cn(
