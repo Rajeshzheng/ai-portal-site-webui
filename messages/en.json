@@ -140,7 +140,25 @@
     "add": "Add",
     "text": "to your website homepage, And then you can submit your website successfully for free！",
     "networkError": "Network Error",
-    "success": "success"
+    "success": "success",
+    "pricing": {
+      "title": "Boost Your Website's Visibility",
+      "price": "Just $1.99",
+      "limitedTime": "Limited Time",
+      "description": "Make your website stand out!",
+      "feature1": "Listed in 24 Hours",
+      "feature2": "Priority Display",
+      "feature3": "Increase Traffic & Exposure",
+      "securePaymentVia": "Payment Methods",
+      "paymentMethods": {
+        "card": "Credit Card",
+        "wechat": "WeChat Pay"
+      },
+      "submitButton": "Get Started"
+    },
+    "paymentError": "Payment failed, please try again later",
+    "paymentProcessing": "Processing payment...",
+    "paymentSuccess": "Payment successful!"
   },
   "Startup": {
     "title": "Kickstart Your Startup Launch",
@@ -181,5 +199,9 @@
     "submit": {
       "title": "Submit your AI tool and get Get Traffic | AI Basket Directory"
     }
+  },
+  "Auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
   }
 }

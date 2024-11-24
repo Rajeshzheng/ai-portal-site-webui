@@ -140,7 +140,22 @@
     "add": "Ajouter",
     "text": "à la page d'accueil de votre site, et vous pouvez soumettre votre site gratuitement avec succès !",
     "networkError": "Erreur réseau",
-    "success": "succès"
+    "success": "succès",
+    "pricing": {
+      "title": "Augmentez la visibilité de votre site",
+      "price": "Seulement $1.99",
+      "limitedTime": "Offre limitée",
+      "description": "Faites démarquer votre site web!",
+      "feature1": "Référencement sous 24 heures",
+      "feature2": "Priorité d'affichage",
+      "feature3": "Augmentation du trafic & visibilité",
+      "securePaymentVia": "Moyens de paiement",
+      "paymentMethods": {
+        "card": "Carte bancaire",
+        "wechat": "WeChat Pay"
+      },
+      "submitButton": "Commencer maintenant"
+    }
   },
   "Startup": {
     "title": "Lancez votre startup",
@@ -181,5 +196,9 @@
     "submit": {
       "title": "Soumettez votre outil AI et obtenez du trafic | Répertoire des outils AI de AI Basket"
     }
+  },
+  "Auth": {
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter"
   }
 }

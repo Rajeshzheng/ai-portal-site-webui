@@ -102,3 +102,58 @@
 .tr-rounded {
   clip-path: xywh(0 0 100% 100% round 4px);
 }
+
+@layer components {
+  .promo-badge {
+    position: relative;
+  }
+
+  .promo-badge::after {
+    content: attr(data-badge-text);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 1px 4px;
+    font-size: 9px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff4e50, #fc913a);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: badgePulse 2s infinite;
+    z-index: 10;
+    white-space: nowrap;
+    transform: translateZ(0);
+  }
+
+  @keyframes badgePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .promo-badge::after {
+      font-size: 8px;
+      padding: 1px 3px;
+      top: 0px;
+      right: 0px;
+    }
+  }
+
+  .promo-badge.special::after {
+    background: linear-gradient(135deg, #4a90e2, #967adc);
+  }
+
+  .promo-badge.hot::after {
+    background: linear-gradient(135deg, #ff4e50, #fc913a);
+  }
+
+  .promo-badge.new::after {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+  }
+
+  /* 导入促销角标样式 */
+  @import './styles/promo-badge.css';
+}

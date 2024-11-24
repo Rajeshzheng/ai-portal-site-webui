@@ -140,7 +140,22 @@
     "add": "Hinzufügen",
     "text": "zu Ihrer Website-Startseite, und dann können Sie Ihre Website erfolgreich kostenlos einreichen!",
     "networkError": "Netzwerkfehler",
-    "success": "Erfolg"
+    "success": "Erfolg",
+    "pricing": {
+      "title": "Erhöhen Sie die Sichtbarkeit Ihrer Website",
+      "price": "Nur $1.99",
+      "limitedTime": "Zeitlich begrenzt",
+      "description": "Lassen Sie Ihre Website herausstechen!",
+      "feature1": "Auflistung innerhalb von 24 Stunden",
+      "feature2": "Top-Anzeigepriorität",
+      "feature3": "Steigerung von Traffic & Sichtbarkeit",
+      "securePaymentVia": "Zahlungsmethoden",
+      "paymentMethods": {
+        "card": "Kreditkarte",
+        "wechat": "WeChat Pay"
+      },
+      "submitButton": "Jetzt starten"
+    }
   },
   "Startup": {
     "title": "Starten Sie Ihren Startup-Launch",
@@ -181,5 +196,9 @@
     "submit": {
       "title": "Reichen Sie Ihr KI-Tool ein und erhalten Sie Traffic | AI Basket Verzeichnis"
     }
+  },
+  "Auth": {
+    "signIn": "Anmelden",
+    "signOut": "Abmelden"
   }
 }

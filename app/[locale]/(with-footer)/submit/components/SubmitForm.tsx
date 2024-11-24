@@ -14,13 +14,19 @@ import { cn } from '@/lib/utils';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import Spinning from '@/components/Spinning';
+import { PROMO_CONFIG } from '../../../../config/promo';
 
 const FormSchema = z.object({
   website: z.string(),
   url: z.string().url(),
 });
 
-export default function SubmitForm({ className }: { className?: string }) {
+interface SubmitFormProps {
+  className?: string;
+  onSubmit?: (data: z.infer<typeof FormSchema>) => void;
+}
+
+export default function SubmitForm({ className, onSubmit }: SubmitFormProps) {
   const supabase = createClient();
   const t = useTranslations('Submit');
 
@@ -34,14 +40,18 @@ export default function SubmitForm({ className }: { className?: string }) {
     },
   });
 
-  const onSubmit = async (formData: z.infer<typeof FormSchema>) => {
+  const handleSubmit = async (formData: z.infer<typeof FormSchema>) => {
+    if (onSubmit) {
+      onSubmit(formData);
+      return;
+    }
+
     let errMsg: any = t('networkError');
     try {
       setLoading(true);
       const { error } = await supabase.from('submit').insert({
         name: formData.website,
         url: formData.url,
-        // email: ''
       });
       if (error) {
         errMsg = error.message;
@@ -59,7 +69,7 @@ export default function SubmitForm({ className }: { className?: string }) {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(handleSubmit)}
         className={cn(
           'mx-3 mb-5 flex h-[449px] flex-col justify-between rounded-[12px] bg-[#2C2D36] px-3 py-5 lg:h-[557px] lg:w-[444px] lg:p-8',
           className,

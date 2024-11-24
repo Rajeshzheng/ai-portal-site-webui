@@ -140,7 +140,22 @@
     "add": "Agregar",
     "text": "a la página de inicio de tu sitio web, ¡y luego puedes enviar tu sitio web con éxito de forma gratuita!",
     "networkError": "Error de red",
-    "success": "éxito"
+    "success": "éxito",
+    "pricing": {
+      "title": "Mejore la visibilidad de su sitio web",
+      "price": "Solo $1.99",
+      "limitedTime": "Tiempo limitado",
+      "description": "¡Haga que su sitio web destaque!",
+      "feature1": "Listado en 24 horas",
+      "feature2": "Prioridad de visualización",
+      "feature3": "Aumente el tráfico y la exposición",
+      "securePaymentVia": "Métodos de pago",
+      "paymentMethods": {
+        "card": "Tarjeta de crédito",
+        "wechat": "WeChat Pay"
+      },
+      "submitButton": "Comenzar ahora"
+    }
   },
   "Startup": {
     "title": "Impulsa el Lanzamiento de tu Startup",
@@ -181,5 +196,9 @@
     "submit": {
       "title": "Envía tu herramienta de IA y obtén tráfico | Directorio de IA de AI Basket"
     }
+  },
+  "Auth": {
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión"
   }
 }

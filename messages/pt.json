@@ -140,7 +140,24 @@
     "add": "Adicionar",
     "text": "para a página inicial do seu site. Em seguida, você pode enviar seu site com sucesso gratuitamente!",
     "networkError": "Erro de rede",
-    "success": "sucesso"
+    "success": "sucesso",
+    "pricing": {
+      "title": "Aumente a Visibilidade do Seu Site",
+      "price": "Apenas $1.99",
+      "limitedTime": "Tempo Limitado",
+      "description": "Destaque seu site hoje!",
+      "feature1": "Listagem em 24 Horas",
+      "feature2": "Posição de Destaque",
+      "feature3": "Mais Tráfego & Exposição",
+      "securePaymentVia": "Métodos de Pagamento",
+      "paymentMethods": {
+        "card": "Cartão de Crédito",
+        "wechat": "WeChat Pay"
+      },
+      "submitButton": "Começar Agora"
+    },
+    "paymentError": "Erro no pagamento, tente novamente mais tarde",
+    "paymentProcessing": "Processando pagamento..."
   },
   "Startup": {
     "title": "Inicie o Lançamento da sua Startup",
@@ -181,5 +198,9 @@
     "submit": {
       "title": "Envie sua ferramenta de IA e obtenha Tráfego | Diretório de IA do AI Basket"
     }
+  },
+  "Auth": {
+    "signIn": "Entrar",
+    "signOut": "Sair"
   }
 }

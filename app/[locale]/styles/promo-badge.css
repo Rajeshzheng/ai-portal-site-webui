@@ -1,0 +1,38 @@
+.promo-badge {
+  position: relative;
+}
+
+.promo-badge::after {
+  content: attr(data-badge-text);
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #ff4e50, #f9d423);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: badgePulse 2s infinite;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+@keyframes badgePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.promo-badge.special::after {
+  background: linear-gradient(135deg, #4a90e2, #967adc);
+}
+
+.promo-badge.hot::after {
+  background: linear-gradient(135deg, #ff4e50, #fc913a);
+}
+
+.promo-badge.new::after {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+} 

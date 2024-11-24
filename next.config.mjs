@@ -24,6 +24,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'js.stripe.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   productionBrowserSourceMaps: false,
