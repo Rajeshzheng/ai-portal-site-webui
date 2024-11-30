@@ -25,7 +25,7 @@ export default function SubmitFormWithPayment() {
     <>
       <SubmitForm 
         onSubmit={handleSubmit}
-        className="mx-3 mb-5 flex h-[449px] flex-col justify-between rounded-[12px] bg-[#2C2D36] px-3 py-5 lg:h-[557px] lg:w-[444px] lg:p-8"
+        className="w-full max-w-[444px] rounded-xl bg-[#2C2D36] p-4 shadow-lg lg:p-8"
       />
       <SubmitPricingModal
         isOpen={isModalOpen}

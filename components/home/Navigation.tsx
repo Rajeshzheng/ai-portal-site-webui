@@ -84,13 +84,14 @@ export default function Navigation() {
                 </Link>
               ))}
             </ul>
-            <div className='flex items-center gap-x-3'>
+            <div className='hidden lg:flex items-center gap-x-3'>
               <LocaleSwitcher />
               <AuthButton />
             </div>
           </div>
           {/* mobile */}
           <div className='mx-3 flex items-center gap-x-4 lg:hidden'>
+            <LocaleSwitcher />
             <AuthButton />
             <MenuBtn open={open} onClick={() => setOpen(!open)} />
           </div>

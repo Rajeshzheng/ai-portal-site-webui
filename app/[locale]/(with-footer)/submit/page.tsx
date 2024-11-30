@@ -22,13 +22,21 @@ export default function Page() {
   const t = useTranslations('Submit');
 
   return (
-    <div className='mx-auto max-w-pc'>
-      <div className='flex-y-center my-3 flex lg:my-10'>
-        <h1 className='text-5xl font-bold'>{t('title')}</h1>
-        <h2 className='mt-[5px] text-sm font-bold lg:my-3'>{t('subTitle')}</h2>
+    <div className='mx-auto w-full px-4 lg:max-w-pc lg:px-0'>
+      <div className='my-6 flex flex-col items-center space-y-2 text-center lg:my-10 lg:space-y-3'>
+        <h1 className='text-3xl font-bold lg:text-5xl'>{t('title')}</h1>
+        <h2 className='text-xs font-medium text-gray-400 lg:text-sm'>
+          {t('subTitle')}
+        </h2>
+      </div>
+
+      <div className='flex justify-center'>
         <SubmitFormWithPayment />
       </div>
-      <Faq />
+
+      <div className='mt-8 lg:mt-12'>
+        <Faq />
+      </div>
     </div>
   );
 }

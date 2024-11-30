@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
+import { Button } from "@/components/ui/button";
 
 import { FORM_PLACEHOLDER, WEBSITE_EXAMPLE } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -71,25 +72,29 @@ export default function SubmitForm({ className, onSubmit }: SubmitFormProps) {
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
         className={cn(
-          'mx-3 mb-5 flex h-[449px] flex-col justify-between rounded-[12px] bg-[#2C2D36] px-3 py-5 lg:h-[557px] lg:w-[444px] lg:p-8',
-          className,
+          'flex flex-col space-y-4 lg:space-y-6',
+          className
         )}
       >
-        <div className='space-y-3 lg:space-y-5'>
+        <div className='space-y-4 lg:space-y-5'>
           <FormField
             control={form.control}
             name='website'
             render={({ field }) => (
-              <FormItem className='space-y-1'>
-                <FormLabel>{t('website')}</FormLabel>
+              <FormItem className='space-y-1.5'>
+                <FormLabel className='text-sm font-medium lg:text-base'>
+                  {t('website')}
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder='AI Basket'
-                    className='input-border-pink h-[42px] w-full rounded-[8px] border-[0.5px] bg-dark-bg p-5'
+                    className='h-10 rounded-lg border-[0.5px] bg-dark-bg px-4 text-sm 
+                             focus:border-pink-500 focus:ring-1 focus:ring-pink-500
+                             lg:h-12 lg:text-base'
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className='text-xs lg:text-sm' />
               </FormItem>
             )}
           />
@@ -97,35 +102,32 @@ export default function SubmitForm({ className, onSubmit }: SubmitFormProps) {
             control={form.control}
             name='url'
             render={({ field }) => (
-              <FormItem className='space-y-1'>
-                <FormLabel>{t('url')}</FormLabel>
+              <FormItem className='space-y-1.5'>
+                <FormLabel className='text-sm font-medium lg:text-base'>
+                  {t('url')}
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder={FORM_PLACEHOLDER}
-                    className='input-border-pink h-[42px] w-full rounded-[8px] border-[0.5px] bg-dark-bg p-5'
+                    className='h-10 rounded-lg border-[0.5px] bg-dark-bg px-4 text-sm
+                             focus:border-pink-500 focus:ring-1 focus:ring-pink-500
+                             lg:h-12 lg:text-base'
                     {...field}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className='text-xs lg:text-sm' />
               </FormItem>
             )}
           />
         </div>
-        <div className='flex flex-col gap-[10px] lg:gap-8'>
-          <button
-            type='submit'
-            disabled={loading}
-            className={cn(
-              'flex-center mt-auto h-[48px] w-full gap-4 rounded-[8px] bg-white text-center font-bold text-black hover:cursor-pointer hover:opacity-80',
-              loading && 'hover:cursor-not-allowed',
-            )}
-          >
-            {loading ? <Spinning className='size-[22px]' /> : t('submit')}
-          </button>
-          <p className='text-[13px] text-white/40'>
-            {t('add')} <span className='text-white'>{WEBSITE_EXAMPLE}</span> {t('text')}
-          </p>
-        </div>
+        <Button
+          type="submit"
+          className='mt-4 h-10 w-full rounded-lg bg-gradient-to-r from-pink-500 
+                     to-purple-500 text-sm font-medium text-white transition-transform 
+                     hover:scale-[1.02] lg:h-12 lg:text-base'
+        >
+          {t('submit')}
+        </Button>
       </form>
     </Form>
   );
