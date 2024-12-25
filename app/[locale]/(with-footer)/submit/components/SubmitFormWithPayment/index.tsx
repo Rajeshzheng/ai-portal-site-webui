@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { z } from 'zod';
 import SubmitForm from '../SubmitForm';
 import SubmitPricingModal from './SubmitPricingModal';
+import { createClient } from '@/db/supabase/client';
+import { toast } from 'sonner';
 
 // 确保与 SubmitForm 使用相同的表单数据类型
 interface FormData {
@@ -17,8 +19,25 @@ export default function SubmitFormWithPayment() {
 
   // 处理表单提交
   const handleSubmit = (data: FormData) => {
-    setFormData(data);
-    setIsModalOpen(true);
+    // 保存数据到数据库
+    const saveData = async () => {
+      const { error } = await createClient().from('submit').insert({
+        name: data.website,
+        url: data.url,
+        status: 0, // 设置为待处理状态
+      });
+      if (error) {
+        throw new Error('Failed to save data');
+      }
+    };
+
+    saveData().then(() => {
+      setFormData(data);
+      setIsModalOpen(true);
+    }).catch((error) => {
+      console.error(error);
+      toast.error('Failed to save data');
+    });
   };
 
   return (

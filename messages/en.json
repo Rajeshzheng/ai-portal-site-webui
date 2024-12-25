@@ -197,11 +197,20 @@
       "keywords": "AI Basket Directory"
     },
     "submit": {
-      "title": "Submit your AI tool and get Get Traffic | AI Basket Directory"
+      "title": "Submit your AI tool and get Get Traffic | AI Basket Directory",
+      "success": "Submission Successful"
     }
   },
   "Auth": {
     "signIn": "Sign In",
     "signOut": "Sign Out"
+  },
+  "SubmitSuccess": {
+    "title": "Submission Successful",
+    "subTitle": "Thank you for your submission",
+    "message": "Success!",
+    "description": "Your website has been successfully submitted and will be processed soon.",
+    "backHome": "Back to Home",
+    "submitAnother": "Submit Another"
   }
 }

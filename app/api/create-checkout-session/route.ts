@@ -41,6 +41,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: '缺少价格ID' }, { status: 400 });
     }
 
+    // 获取当前语言
+    const locale = localeSettings?.locale || 'en';
+
     const params: Stripe.Checkout.SessionCreateParams = {
       mode: 'payment',
       payment_method_types: ['card'],
@@ -50,11 +53,22 @@ export async function POST(req: Request) {
           quantity: 1,
         },
       ],
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/submit/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/submit`,
-      metadata,
+      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/submit/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/submit`,
+      metadata: {
+        website: metadata.website,
+        url: metadata.url,
+        locale,
+      },
       currency: localeSettings?.currency || 'usd',
     };
+
+    console.log('Creating checkout session with params:', {
+      successUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/submit/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancelUrl: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/submit`,
+      locale,
+      siteUrl: process.env.NEXT_PUBLIC_SITE_URL
+    });
 
     const session = await stripe.checkout.sessions.create(params);
 
@@ -62,7 +76,7 @@ export async function POST(req: Request) {
       sessionId: session.id,
       sessionUrl: session.url,
       paymentStatus: session.payment_status,
-      locale: localeSettings?.locale || 'en',
+      locale,
       currency: localeSettings?.currency || 'usd',
     });
 

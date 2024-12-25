@@ -202,5 +202,13 @@
   "Auth": {
     "signIn": "Entrar",
     "signOut": "Sair"
+  },
+  "SubmitSuccess": {
+    "title": "Envío Exitoso",
+    "subTitle": "Obrigado por seu envio",
+    "message": "Sucesso!",
+    "description": "Seu site foi enviado com sucesso e será processado em breve.",
+    "backHome": "Voltar para Início",
+    "submitAnother": "Enviar Outro"
   }
 }

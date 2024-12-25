@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import logger from '@/lib/logger';
+import { useLocale } from 'next-intl';
 
 // 定义表单数据类型
 interface SubmitFormData {
@@ -23,6 +24,7 @@ const getPreferredPaymentMethods = (userLanguage: string): string[] => {
 export function useSubmitPayment() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [localeSettings, setLocaleSettings] = useState<LocaleSettings | null>(null);
+  const locale = useLocale();
 
   // 检测用户区域和首选支付方式
   useEffect(() => {
@@ -64,13 +66,14 @@ export function useSubmitPayment() {
       logger.payment('Starting payment process', {
         ...formData,
         localeSettings,
+        locale,
       });
       
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept-Language': localeSettings?.locale || 'en',
+          'Accept-Language': localeSettings?.locale || locale || 'en',
         },
         body: JSON.stringify({
           priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
@@ -78,7 +81,10 @@ export function useSubmitPayment() {
             website: formData.website,
             url: formData.url,
           },
-          localeSettings,
+          localeSettings: {
+            ...localeSettings,
+            locale,
+          },
         }),
       });
 
@@ -102,6 +108,7 @@ export function useSubmitPayment() {
         error,
         formData,
         localeSettings,
+        locale,
       });
       throw error;
     } finally {

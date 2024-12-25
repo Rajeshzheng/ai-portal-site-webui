@@ -200,5 +200,13 @@
   "Auth": {
     "signIn": "Se connecter",
     "signOut": "Se déconnecter"
+  },
+  "SubmitSuccess": {
+    "title": "Soumission Réussie",
+    "subTitle": "Merci pour votre soumission",
+    "message": "Succès !",
+    "description": "Votre site web a été soumis avec succès et sera traité prochainement.",
+    "backHome": "Retour à l'Accueil",
+    "submitAnother": "Soumettre un Autre"
   }
 }

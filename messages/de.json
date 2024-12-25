@@ -200,5 +200,13 @@
   "Auth": {
     "signIn": "Anmelden",
     "signOut": "Abmelden"
+  },
+  "SubmitSuccess": {
+    "title": "Einreichung erfolgreich",
+    "subTitle": "Vielen Dank für Ihre Einreichung",
+    "message": "Erfolg!",
+    "description": "Ihre Website wurde erfolgreich eingereicht und wird in Kürze bearbeitet.",
+    "backHome": "Zur Startseite",
+    "submitAnother": "Weitere einreichen"
   }
 }
