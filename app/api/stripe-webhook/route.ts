@@ -24,6 +24,11 @@ export async function POST(req: Request) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object as Stripe.Checkout.Session;
+    if (!session.metadata?.url) {
+      console.error('No URL found in session metadata');
+      return new Response('No URL in metadata', { status: 400 });
+    }
+    
     const url = session.metadata.url;
     
     console.log('Processing completed session for URL:', url);
